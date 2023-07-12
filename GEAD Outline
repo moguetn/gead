@@ -1,0 +1,44 @@
+•	countries: Records details about different countries around the world.
+  o	country_id: int, auto_increment, unique, not NULL, PK. The unique identifier for each country.
+  o	country_name: varchar, not NULL. The official name of the country.
+  o	global_region: varchar, not NULL. The geographical region in which the country is located.
+  o	population: bigint, not NULL. The total population of the country.
+  o	gdp: decimal, not NULL. The Gross Domestic Product of the country.
+  o	Relationships: A 1:M relationship with both the consumers and providers entities. The country_id serves as a foreign key in these entities.
+•	energy_types: Stores data about different forms of energy being used (solar, wind, coal, nuclear, etc.).
+  o	energytype_id: int, auto_increment, unique, not NULL, PK. A unique identifier for each type of energy.
+  o	energy_type: varchar, not NULL. The name of the type of energy.
+  o	description: text, not NULL. A brief description of the energy type.
+  o	sust_rating: varchar, not NULL. Rating of energy type according to authoritative sustainability standards.
+  o	Relationships: A 1:M relationship with the providers entity, and a M:N relationship with the consumers entity. The energytype_id serves as a foreign key in these entities.
+•	consumers: Records data about energy consumers, represented as local municipalities.
+  o	consumer_id: int, auto_increment, unique, not NULL, PK. A unique identifier for each municipality.
+  o	municipality: varchar, not NULL. The name of the municipality.
+  o	population: bigint, not NULL. The population of the city or town.
+  o	country_id: int, FK, not NULL. The identifier for the country in which the municipality is located.
+  o	region: varchar, not NULL. The region in which the municipality is located.
+  o	annual_consumption: decimal, not NULL. The total energy consumed by the municipality each year.
+  o	annual_spending: decimal, not NULL. The total money spent on energy by the municipality each year.
+  o	total_providers: int, not NULL. The total number of energy providers serving the municipality.
+  o	Relationships: A M:N relationship with the providers entity, and M:N relationship with the energy_types entity, both through intersection tables. The consumer_id serves as a foreign key in the provided_energy and consumed_energy intersection tables.
+•	providers: Contains information about energy providers.
+  o	provider_id: int, auto_increment, unique, not NULL, PK. A unique identifier for each provider.
+  o	provider_name: varchar, not NULL. The name of the provider.
+  o	org_type: varchar, not NULL. The type of the provider (public, private, cooperative, etc.).
+  o	country_id: int, FK, not NULL. The identifier for the country in which the provider is located.
+  o	energytype_id: int, FK, not NULL. The identifier for the type(s) of energy provided.
+  o	capacity: decimal, not NULL. The total capacity of the provider to produce energy.
+  o	Relationships: A M:N relationship with the consumers entity through an intersection table, and a M:1 relationship with the energy_types table. The provider_id serves as a foreign key in the provided_energy intersection table. Country_id and energytype_id are foreign keys to the countries and energy_types entities, respectively.
+•	provided_energy (Intersection Table): Records the provision of energy from Providers to Consumers.
+  o	provider_id: int, FK, not NULL. The identifier for the Provider supplying the energy.
+  o	consumer_id: int, FK, not NULL. The identifier for the municipality consuming the energy.
+  o	annual_amount: decimal, not NULL. The amount of energy provided.
+  o	annual_cost: decimal, not NULL. The total annual cost of the provision.
+  o	Relationships: Implements the M:N relationship between the providers and consumers entities. Both provider_id and consumer_id are foreign keys reference the providers and consumers entities, respectively.
+•	consumed_energy (Intersection Table): Records the consumption of an energy type between consumers and energy_types entities.
+  o	consumer_id: int, FK, not NULL. The identifier for the municipality consuming the energy.
+  o	energytype_id: int, FK, not NULL. The identifier for energy type consumed.
+  o	annual_amount: decimal, not NULL. The amount of energy consumed.
+  o	annual_cost: decimal, not NULL. The total annual cost of the consumption.
+  o	Relationships: Implements the M:N relationship between the consumers and energy_types tables. Consumer_id and energytype_id point to the consumers and energy_types entities, respectively.
+
