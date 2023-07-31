@@ -13,11 +13,11 @@ CREATE TABLE `Countries` (
 
 INSERT INTO Countries (countryName, globalRegion, population, GDP)
 VALUES
-	('United States', 'North America', 3310002651, 21.43),
-	('China', 'Asia', 1439323776, 14.34),
-    ('India', 'Asia', 1380004385, 2.87),
-    ('Brazil', 'South America', 212559417, 1.43),
-    ('Russia', 'Asia', 145934462, 1.47);
+	('United States', 'North America', 3310002651, 21430000000000),
+	('China', 'Asia', 1439323776, 14340000000000),
+    ('India', 'Asia', 1380004385, 2870000000000),
+    ('Brazil', 'South America', 212559417, 1430000000000),
+    ('Russia', 'Asia', 145934462, 1470000000000);
     
 
 -- Consumers Table
@@ -112,10 +112,3 @@ CREATE TABLE `Energy_Provisions` (
 	FOREIGN KEY (`energyTypeID`) REFERENCES Energy_Types(energyTypeID)
 		ON DELETE CASCADE
 );
-
-    
-
-    
-
-    
-
