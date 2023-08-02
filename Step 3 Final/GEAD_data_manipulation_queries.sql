@@ -89,7 +89,7 @@ WHERE providerID = :providerIDforSelectedEntry:;
 -- Populate
 SELECT Providers.providerName, Countries.countryName
 FROM Providers
-	INNER JOIN National_Providers ON Providers.providerID = National_Operations.providerID
+	INNER JOIN National_Operations ON Providers.providerID = National_Operations.providerID
 	INNER JOIN Countries ON National_Operations.countryID = Countries.countryID;
     
 -- Add new national operation

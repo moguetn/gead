@@ -13,11 +13,11 @@ CREATE TABLE `Countries` (
 
 INSERT INTO Countries (countryName, globalRegion, population, GDP)
 VALUES
-	('United States', 'North America', 3310002651, 21430000000000),
-	('China', 'Asia', 1439323776, 14340000000000),
-    ('India', 'Asia', 1380004385, 2870000000000),
-    ('Brazil', 'South America', 212559417, 1430000000000),
-    ('Russia', 'Asia', 145934462, 1470000000000);
+	('United States', 'North America', 3310002651, 21.4),
+	('China', 'Asia', 1439323776, 14.3),
+    ('India', 'Asia', 1380004385, 2.8),
+    ('Brazil', 'South America', 212559417, 1.4),
+    ('Russia', 'Asia', 145934462, 1.4);
     
 
 -- Consumers Table
@@ -48,7 +48,7 @@ CREATE TABLE `Energy_Types` (
 	`energyTypeID` int(11) NOT NULL auto_increment,
 	`energyName` varchar(45) NOT NULL,
 	`emissionsRate` int(11),
-	`deathRate` decimal(10,0),
+	`deathRate` decimal(10,4),
 	PRIMARY KEY (`energyTypeID`)
 );
 
